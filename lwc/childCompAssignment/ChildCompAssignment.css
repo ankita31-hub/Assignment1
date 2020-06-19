@@ -1,0 +1,8 @@
+.ChildRecord{
+    padding:10px;
+    margin:6px;
+    border:2px;
+    color:green;
+    min-width:430px;
+    max-width:620px;
+}

@@ -1,0 +1,37 @@
+<template>
+    <div class='slds-grid' style="border:0.2rem;border-color:brown;border-style:solid;margin:1rem;padding:1rem;">
+        <div class="slds-col" style="border:0.2rem;border-color:darkblue;border-style:solid;margin:1rem;padding:1rem;">
+            <lightning-input  label="Name" onchange={handleChangeEvent}></lightning-input>
+            <lightning-input  label="Record #" onchange={handleChangeEvent}></lightning-input>
+            <br/>
+            <lightning-button style="margin-left:1rem;" label="Search" onclick={searchName}></lightning-button>
+        </div>
+        <!--Filter block-->
+        <div class="slds-col" style="margin:1rem;border:0.2rem;border-color:darkblue;border-style:solid;padding:1rem;">
+            <lightning-layout>
+                <div class='slds-row'>
+                <lightning-input name="filterData" label="filterData"  variant="label-hidden" onkeyup={handleChangeEvent}  placeholder="Filter" style="margin-left:0.8rem"></lightning-input><br/>
+            </div>
+            <div class='slds-row'>
+                <lightning-button name="search" label="Filter Data" onclick={filterData12} ></lightning-button>
+            </div>
+            </lightning-layout>
+            <!--Child List record-->
+            <template if:false={showFilterData}>
+                <template if:true={accounts}>
+                    <template for:each={accounts} for:item="account"> 
+                        <!--passing single account to child component-->      
+                        <c-child-comp-assignment account={account} key={account.Id}></c-child-comp-assignment>
+                    </template>
+                </template>
+            </template>
+            <template if:true={showFilterData}>
+                <template if:true={copyResults}>
+                    <template for:each={copyResults} for:item="account">       
+                        <c-child-comp-assignment account={account} key={account.Id}></c-child-comp-assignment>
+                    </template>
+                </template>
+            </template>
+        </div>
+</div>
+</template>
